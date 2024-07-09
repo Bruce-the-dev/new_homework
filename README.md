@@ -15,4 +15,4 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-![edit or change image](image.png), ![choose an image](image-1.png)
+![edit or change image](image.png), ![choose an image](image-1.png) , ![updated image](image-2.png)

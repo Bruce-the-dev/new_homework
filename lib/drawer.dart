@@ -1,24 +1,33 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class AppDrawer extends StatelessWidget {
+class AppDrawer extends StatefulWidget {
   final String currentRoute;
 
   AppDrawer({required this.currentRoute});
 
+  @override
+  _AppDrawerState createState() => _AppDrawerState();
+}
+
+class _AppDrawerState extends State<AppDrawer> {
+  File? _profileImage;
+
   Future<void> _selectProfilePicture(BuildContext context) async {
-    // ignore: no_leading_underscores_for_local_identifiers
     final ImagePicker _picker = ImagePicker();
     final XFile? pickedFile =
         await _picker.pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
-      // Handle the picked image (save it, display it, etc.)
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Selected image: ${pickedFile.path}')),
-      );
+      setState(() {
+        _profileImage = File(pickedFile.path);
+      });
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Selected image: ${pickedFile.path}')),
+        );
+      }
     }
   }
 
@@ -28,10 +37,14 @@ class AppDrawer extends StatelessWidget {
         await _picker.pickImage(source: ImageSource.camera);
 
     if (pickedFile != null) {
-      // Handle the picked image (save it, display it, etc.)
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Took picture: ${pickedFile.path}')),
-      );
+      setState(() {
+        _profileImage = File(pickedFile.path);
+      });
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Took picture: ${pickedFile.path}')),
+        );
+      }
     }
   }
 
@@ -45,8 +58,9 @@ class AppDrawer extends StatelessWidget {
             accountName: Text('Bruce'),
             accountEmail: Text('bruce@work.com'),
             currentAccountPicture: CircleAvatar(
-              backgroundImage: AssetImage(
-                  'images/profile_picture.png'), // Display your current profile picture
+              backgroundImage: _profileImage != null
+                  ? FileImage(_profileImage!)
+                  : AssetImage('images/profile_picture.png') as ImageProvider,
             ),
           ),
           _createDrawerItem(
@@ -98,7 +112,7 @@ class AppDrawer extends StatelessWidget {
       title: Text(text),
       onTap: onTap ??
           () {
-            if (routeName != null && currentRoute != routeName) {
+            if (routeName != null && widget.currentRoute != routeName) {
               Navigator.of(context).pushReplacementNamed(routeName);
             }
           },

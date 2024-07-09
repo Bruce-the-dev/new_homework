@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:new_homework/sign_in%20screens/sign_in.dart';
 import 'package:new_homework/sign_in%20screens/sign_up.dart';
+
 import 'drawer.dart'; // Import the drawer.dart file
 
 void main() {
@@ -15,13 +16,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/', // Initial route to MainScreen
+      initialRoute: '/',
       routes: {
-        '/': (context) => MainScreen(), // Main screen route
-        '/signIn': (context) => SignInScreen(), // Sign-in screen route
-        '/signUp': (context) => SignUpScreen(), // Sign-up screen route
-        // '/calculator': (context) =>
-        //     CalculatorScreen(), // Calculator screen route
+        '/': (context) => MainScreen(),
+        '/signIn': (context) => SignInScreen(),
+        '/signUp': (context) => SignUpScreen(),
+        // '/calculator': (context) => CalculatorScreen(),
       },
     );
   }
@@ -34,10 +34,10 @@ class MainScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Homework App'),
       ),
-      drawer: AppDrawer(currentRoute: '/'), // Drawer with current route '/'
+      drawer: AppDrawer(currentRoute: '/'),
       body: Container(
-        color: Color.fromARGB(255, 41, 95,
-            175), // Set a solid background color, for example, white
+        color: const Color.fromARGB(255, 196, 186,
+            186), // Set a solid background color, for example, white
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
