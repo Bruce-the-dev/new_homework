@@ -36,7 +36,8 @@ class MainScreen extends StatelessWidget {
       ),
       drawer: AppDrawer(currentRoute: '/'), // Drawer with current route '/'
       body: Container(
-        color: Colors.white, // Set a solid background color, for example, white
+        color: Color.fromARGB(255, 41, 95,
+            175), // Set a solid background color, for example, white
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

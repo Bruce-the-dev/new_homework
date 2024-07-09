@@ -9,8 +9,10 @@ class AppDrawer extends StatelessWidget {
   AppDrawer({required this.currentRoute});
 
   Future<void> _selectProfilePicture(BuildContext context) async {
+    // ignore: no_leading_underscores_for_local_identifiers
     final ImagePicker _picker = ImagePicker();
-    final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    final XFile? pickedFile =
+        await _picker.pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
       // Handle the picked image (save it, display it, etc.)
@@ -22,7 +24,8 @@ class AppDrawer extends StatelessWidget {
 
   Future<void> _takeProfilePicture(BuildContext context) async {
     final ImagePicker _picker = ImagePicker();
-    final XFile? pickedFile = await _picker.pickImage(source: ImageSource.camera);
+    final XFile? pickedFile =
+        await _picker.pickImage(source: ImageSource.camera);
 
     if (pickedFile != null) {
       // Handle the picked image (save it, display it, etc.)
@@ -42,7 +45,8 @@ class AppDrawer extends StatelessWidget {
             accountName: Text('Bruce'),
             accountEmail: Text('bruce@work.com'),
             currentAccountPicture: CircleAvatar(
-              backgroundImage: AssetImage('images/profile_picture.png'), // Display your current profile picture
+              backgroundImage: AssetImage(
+                  'images/profile_picture.png'), // Display your current profile picture
             ),
           ),
           _createDrawerItem(
@@ -92,11 +96,12 @@ class AppDrawer extends StatelessWidget {
     return ListTile(
       leading: Icon(icon),
       title: Text(text),
-      onTap: onTap ?? () {
-        if (routeName != null && currentRoute != routeName) {
-          Navigator.of(context).pushReplacementNamed(routeName);
-        }
-      },
+      onTap: onTap ??
+          () {
+            if (routeName != null && currentRoute != routeName) {
+              Navigator.of(context).pushReplacementNamed(routeName);
+            }
+          },
     );
   }
 
