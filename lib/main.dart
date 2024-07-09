@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:new_homework/sign_in.dart';
-import 'package:new_homework/sign_up.dart';
+import 'package:new_homework/sign_in%20screens/sign_in.dart';
+import 'package:new_homework/sign_in%20screens/sign_up.dart';
 import 'drawer.dart'; // Import the drawer.dart file
 
 void main() {
